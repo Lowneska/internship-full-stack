@@ -1,0 +1,159 @@
+/* ========================================
+   BLOCK: authForm
+   ======================================== */
+
+/* Container - Full viewport centering */
+.authForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff3e5;
+}
+
+/* ========================================
+   ELEMENT: Card
+   ======================================== */
+
+.authForm__card {
+  width: 100%;
+  max-width: 450px;
+  background-color: #8e0b0d;
+  color: #fff3e5;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.authForm__title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  color: #fff3e5;
+}
+
+/* ========================================
+   ELEMENT: Form
+   ======================================== */
+
+.authForm__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ========================================
+   ELEMENT: Field (Input Group)
+   ======================================== */
+
+.authForm__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.authForm__label {
+  font-weight: 500;
+  color: #fff3e5;
+}
+
+.authForm__inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.authForm__icon {
+  position: absolute;
+  left: 0.75rem;
+  color: #8e0b0d;
+  pointer-events: none;
+}
+
+.authForm__input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.75rem;
+  border: 2px solid #fff3e5;
+  border-radius: 6px;
+  background-color: #fff3e5;
+  color: #8e0b0d;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.authForm__input::placeholder {
+  color: rgba(142, 11, 13, 0.5);
+}
+
+.authForm__input:focus {
+  border-color: #8e0b0d;
+  box-shadow: 0 0 0 3px rgba(142, 11, 13, 0.2);
+}
+
+/* ========================================
+   ELEMENT: Submit Button
+   ======================================== */
+
+.authForm__submit {
+  width: 60%;
+  margin: 0.5rem auto 0;
+  padding: 0.75rem 1rem;
+  color: #8e0b0d;
+  background-color: #fff3e5;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.authForm__submit:hover:not(:disabled) {
+  background-color: rgba(255, 243, 229, 0.9);
+}
+
+.authForm__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   ELEMENT: Error Message
+   ======================================== */
+
+.authForm__error {
+  padding: 0.75rem;
+  background-color: rgba(255, 243, 229, 0.9);
+  border: 2px solid #d32f2f;
+  border-radius: 6px;
+  color: #8e0b0d;
+  font-weight: 500;
+}
+
+/* ========================================
+   ELEMENT: Switch Mode Link
+   ======================================== */
+
+.authForm__switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #fff3e5;
+  font-size: 0.95rem;
+}
+
+.authForm__link {
+  color: #fff3e5;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.authForm__link:hover {
+  opacity: 0.8;
+}

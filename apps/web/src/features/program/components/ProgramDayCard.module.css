@@ -1,0 +1,195 @@
+/* Block: programDayCard */
+.programDayCard {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border: 1px solid #f3f4f6;
+  transition: box-shadow 0.2s;
+}
+
+.programDayCard:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Element: header */
+.programDayCard__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.programDayCard__badgeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.programDayCard__badge {
+  background-color: #8e0b0d;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+.programDayCard__title {
+  color: #111827;
+  margin: 0.5rem 0 0 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.programDayCard__iconWrapper {
+  background-color: #fff3e5;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.programDayCard__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #8e0b0d;
+}
+
+/* Element: metadata */
+.programDayCard__metadata {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.programDayCard__metadataItem {
+  background-color: #fff3e5;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.programDayCard__metadataIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #8e0b0d;
+}
+
+.programDayCard__metadataText {
+  font-size: 0.875rem;
+  color: #8e0b0d;
+}
+
+/* Element: section */
+.programDayCard__section {
+  margin-bottom: 1rem;
+}
+
+.programDayCard__sectionLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 0.5rem 0;
+}
+
+.programDayCard__sectionTitle {
+  font-size: 0.875rem;
+  color: #8e0b0d;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.programDayCard__sectionText {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.programDayCard__sectionText::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #8e0b0d;
+}
+
+/* Element: equipment */
+.programDayCard__equipmentList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.programDayCard__equipmentTag {
+  background-color: #f3f4f6;
+  color: #374151;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+/* Element: exercise */
+.programDayCard__exerciseList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.programDayCard__exerciseCard {
+  background-color: #f9fafb;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+.programDayCard__exerciseName {
+  color: #111827;
+  margin: 0 0 0.25rem 0;
+  font-weight: 500;
+}
+
+.programDayCard__exerciseDetails {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.programDayCard__separator {
+  color: #d1d5db;
+}
+
+/* Element: actions */
+.programDayCard__actions {
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.programDayCard__downloadButton {
+  width: 100%;
+  background-color: #8e0b0d;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.programDayCard__downloadButton:hover {
+  background-color: #6e0809;
+}
+
+.programDayCard__buttonIcon {
+  width: 1rem;
+  height: 1rem;
+}

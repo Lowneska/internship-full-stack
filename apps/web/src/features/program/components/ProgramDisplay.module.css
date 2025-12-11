@@ -1,0 +1,13 @@
+.programDisplay {
+  margin-top: 24px;
+}
+
+.programDisplay__title {
+  margin-bottom: 12px;
+}
+
+.programDisplay__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}

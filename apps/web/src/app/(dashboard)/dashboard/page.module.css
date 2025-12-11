@@ -1,0 +1,141 @@
+.dashboardPage {
+  /* Main container for dashboard content */
+}
+
+.dashboardPage__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff3e5;
+}
+
+.dashboardPage__spinner {
+  width: 48px;
+  height: 48px;
+  color: #8e0b0d;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dashboardPage__error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff3e5;
+  padding: 2rem;
+}
+
+.dashboardPage__errorCard {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  max-width: 400px;
+}
+
+.dashboardPage__loginButton {
+  margin-top: 1rem;
+  background-color: #8e0b0d;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.dashboardPage__loginButton:hover {
+  background-color: rgba(142, 11, 13, 0.9);
+  transform: scale(1.05);
+}
+
+.dashboardPage__card {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.dashboardPage__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboardPage__iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  background-color: #fff3e5;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+}
+
+.dashboardPage__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #8e0b0d;
+}
+
+.dashboardPage__title {
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.dashboardPage__subtitle {
+  color: #6b7280;
+  margin: 0;
+}
+
+.dashboardPage__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboardPage__generateButton {
+  background-color: #8e0b0d;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dashboardPage__generateButton:hover {
+  background-color: rgba(142, 11, 13, 0.9);
+  transform: scale(1.05);
+}
+
+.dashboardPage__generateButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.dashboardPage__footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dashboardPage__footer p {
+  margin: 0;
+}

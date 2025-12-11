@@ -1,0 +1,70 @@
+.programGenerator__title {
+  margin-bottom: 8px;
+}
+
+.programGenerator__subtitle {
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #555;
+}
+
+.programGenerator__textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.programGenerator__error {
+  color: red;
+  margin-top: 8px;
+}
+
+.programGenerator__buttonGroup {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.programGenerator__buttonPrimary {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.programGenerator__buttonPrimary:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.programGenerator__buttonSecondary {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #2563eb;
+  background: white;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.programGenerator__buttonSecondary:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.programGenerator__buttonOutline {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #111;
+  background: white;
+  cursor: pointer;
+}
+
+.programGenerator__buttonOutline:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
