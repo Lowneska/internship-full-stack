@@ -1,199 +1,177 @@
-# Full Stack Internship - Technical Test
+# Full Stack Internship - AI Sport Program Generator
 
-Technical test for a full-stack internship position (Master's final year).
+Application full-stack permettant de générer des programmes d'entraînement sportif personnalisés.
+
+## 🎯 Aperçu du Projet
+
+Cette application combine authentification sécurisée et génération de programmes sportifs via IA. L'utilisateur décrit ses objectifs en langage naturel (ex: "Je veux perdre du poids, 4 séances/semaine, 45 min, sans haltères") et reçoit un programme structuré avec exercices, séries, répétitions, et conseils.
+
+**⚠️ Note importante sur l'API OpenAI:**
+Ce projet utilise un **mock de l'API OpenAI** au lieu de la vraie API payante. Le service `aiService.py` génère des programmes d'entraînement structurés de manière déterministe sans appels API réels. Cela permet de tester l'application complète sans frais. L'option AI a été implémenté mais je n'ai pas pu réellement la tester.
 
 ## Stack
 
-| Component | Technology |
-|-----------|------------|
+| Component | Technology      |
+| --------- | --------------- |
 | Frontend  | React (Next.js) |
-| Backend   | FastAPI |
-| Database  | SQLite |
+| Backend   | FastAPI         |
+| Database  | SQLite          |
 
 ## Project Structure
 
 ```
 ├── apps/
-│   ├── backend/    # FastAPI backend
-│   └── web/        # Next.js frontend
+│   ├── backend/           # API FastAPI
+│   │   ├── main.py       # Point d'entrée
+│   │   ├── middleware.py # CORS & auth
+│   │   ├── db/           # Models & schemas
+│   │   ├── modules/      # Features (auth, ai)
+│   │   └── services/     # Business logic
+│   └── web/              # Frontend Next.js
+│       └── src/
+│           ├── app/      # Pages & layouts
+│           ├── features/ # Features par domaine
+│           └── lib/      # Utilities
 ```
 
----
+## 🎨 Conventions et Architecture Frontend
 
-## Features to Implement
+- **Architecture par feature** : Le code frontend est organisé par fonctionnalité (`features/auth`, `features/program`) plutôt que par type de fichier. Chaque feature contient ses composants, hooks, types et appels API.
+- **Convention CSS BEM** : Tous les styles CSS suivent la méthodologie BEM (Block Element Modifier) pour une meilleure lisibilité et maintenabilité du code CSS.
 
-### Feature 1 — Authentication (Required)
+## ✨ Fonctionnalités Implémentées
 
-Implement a secure authentication flow to protect the AI feature.
+### 🔐 Authentification
 
-#### Backend Endpoints
+- Inscription avec email/mot de passe
+- Hash sécurisé des mots de passe (bcrypt)
+- Connexion avec JWT
+- Protection des routes (middleware backend + guards frontend)
+- Gestion de session persistante (localStorage)
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/auth/signup` | POST | Create a new user |
-| `/api/auth/login` | POST | Authenticate user and get JWT |
-| `/api/auth/me` | GET | Get current user info (protected) |
+**Endpoints:**
 
-**Signup** — `POST /api/auth/signup`
-```json
-// Request
-{ "email": "string", "password": "string" }
+- `POST /api/auth/signup` - Créer un compte
+- `POST /api/auth/login` - Se connecter (retourne JWT)
+- `GET /api/auth/me` - Récupérer l'utilisateur connecté (protégé)
 
-// Response 201
-{ "id": "string", "email": "string" }
+### 🏋️ Générateur de Programme Sportif
 
-// Errors: 400 (validation), 409 (email exists)
-```
+- Saisie en texte libre des objectifs fitness
+- Génération de programmes structurés (mock AI)
+- Affichage en cartes par jour d'entraînement
+- Détails: exercices, séries, répétitions, repos, calories
+- Export JSON du programme
+- Régénération possible
 
-**Login** — `POST /api/auth/login`
-```json
-// Request
-{ "email": "string", "password": "string" }
+**Endpoint:**
 
-// Response 200
-{ "access_token": "<jwt>", "token_type": "bearer" }
+- `POST /api/ai/program` - Générer un programme (protégé, nécessite JWT)
 
-// Errors: 401 (unauthorized)
-```
+### 📊 Contenu Généré (Mock)
 
-**Me** — `GET /api/auth/me` (protected)
-```
-Header: Authorization: Bearer <jwt>
-```
-```json
-// Response 200
-{ "id": "string", "email": "string" }
-```
+Chaque programme inclut:
 
-#### Technical Requirements
+- 4-6 jours d'entraînement
+- Focus par jour (cardio, force, mobilité...)
+- Liste d'exercices avec sets × reps
+- Temps de repos entre exercices
+- Échauffement et récupération
+- Estimation calories brûlées
+- Équipement requis
 
-- Hash passwords with **bcrypt** or **argon2**
-- JWT signed with a secret from environment variables
-- JWT must include `sub` (subject) and `exp` (expiration) claims
-- Store token client-side in `localStorage`
-- Implement route guards in React for protected pages
-- Create FastAPI middleware/dependency for JWT verification
+## 🚀 Installation et Lancement
 
-#### Acceptance Criteria
+### Prérequis
 
-- Signup and login work correctly
-- Protected routes only accessible with valid token
-- User email displayed in `/dashboard` after authentication
-
----
-
-### Feature 2 — AI Sport Program Generator
-
-Generate a structured workout program from free-form text input using AI.
-
-#### User Flow
-
-1. Authenticated user navigates to "Generate Program" page
-2. User enters free-form text describing their goals, constraints, equipment, availability, and fitness level
-3. User clicks "Generate"
-4. Backend calls AI model and returns structured JSON
-5. Frontend displays workout cards (one card per day)
-
-**Example input:**
-> "I want to lose weight, 4 sessions/week, 45 min each, no dumbbells, intermediate level"
-
-#### Backend Endpoint
-
-**Generate Program** — `POST /api/ai/program` (protected)
-```json
-// Request
-{ "text": "<user free text>" }
-
-// Response 200 — Structured JSON with workout days
-```
-
-#### LLM Requirements
-
-- Use **OpenAI SDK** with model `gpt-5-mini` (only authorized model)
-- Strict JSON output validation
-- Implement retry logic on validation failure
-
-#### Frontend Requirements
-
-- Responsive grid layout with one card per day
-- Each card displays:
-  - Day number and focus area
-  - Duration
-  - Equipment icons
-  - Exercise list (name, sets × reps, rest time)
-  - Warmup and cooldown
-  - Estimated calories
-- "Download JSON" button
-- "Re-generate" button (reuses same input text)
-- Cards sorted by day
-
----
-
-## Setup
-
-### Prerequisites
-
-- FastAPI
 - Python 3.11+
-- pnpm (for frontend)
-- SQLite
+- Node.js 18+
+- pnpm
 
-### Environment Variables
-
-Create a `.env` file in the backend directory:
-
-```env
-# JWT Configuration
-JWT_SECRET=your-secret-key-here
-JWT_ALGORITHM=HS256
-JWT_EXPIRATION_MINUTES=30
-
-# OpenAI
-OPENAI_API_KEY=your-openai-api-key
-
-# Database
-DATABASE_URL=sqlite:///./app.db
-```
-
-### Backend Setup
+### Backend
 
 ```bash
 cd apps/backend
 
-# Create virtual environment
+# Créer l'environnement virtuel
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # macOS/Linux
+# ou: venv\Scripts\activate  # Windows
 
-# Install dependencies
+# Installer les dépendances
 pip install -r requirements.txt
 
-# Run the server
+# Lancer le serveur
 uvicorn main:app --reload
 ```
 
-### Frontend Setup
+Le backend sera disponible sur `http://localhost:8000`
+
+### Frontend
 
 ```bash
 cd apps/web
 
-# Install dependencies
+# Installer les dépendances
 pnpm install
 
-# Run development server
+# Lancer le serveur de développement
 pnpm dev
 ```
 
-### Running the Application
+Le frontend sera disponible sur `http://localhost:3000`
 
-1. Start the backend server (default: http://localhost:8000)
-2. Start the frontend server (default: http://localhost:3000)
-3. Access the application at http://localhost:3000
+## 🔧 Configuration
 
----
+### Variables d'environnement (Backend)
 
-## API Documentation
+Créer un fichier `.env` dans `apps/backend/`:
 
-Once the backend is running, access the auto-generated API docs:
+```env
+# JWT
+JWT_SECRET=votre-secret-jwt-ici
+JWT_ALGORITHM=HS256
+JWT_EXPIRATION_MINUTES=30
 
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
+# Base de données
+DATABASE_URL=sqlite:///./app.db
+
+# OpenAI (non utilisé avec le mock)
+# OPENAI_API_KEY=sk-...
+```
+
+> ⚠️ La clé OpenAI n'est pas nécessaire car l'application utilise un mock.
+
+## 📖 Documentation API
+
+Une fois le backend lancé:
+
+- **Swagger UI:** `http://localhost:8000/docs`
+- **ReDoc:** `http://localhost:8000/redoc`
+
+## 🧪 Test de l'Application
+
+1. Démarrer backend et frontend
+2. Accéder à `http://localhost:3000`
+3. Créer un compte via `/signup`
+4. Se connecter via `/login`
+5. Naviguer vers "Generate Program"
+6. Saisir une description (ex: "programme perte de poids, 4 fois/semaine")
+7. Cliquer "Generate" → Le mock génère un programme structuré
+8. Consulter les cartes d'entraînement
+9. Télécharger le JSON si besoin
+
+## 💡 Pourquoi un Mock ?
+
+L'API OpenAI est payante et nécessite des crédits. Pour éviter des frais pendant le développement et les tests, j'ai implémenté un service mock (`aiService.py`) qui:
+
+- Simule la génération de programmes réalistes
+- Retourne des structures JSON conformes au schema attendu
+- Permet de tester toute la chaîne fonctionnelle (auth + génération + affichage)
+- Peut être facilement remplacé par l'API OpenAI réelle en modifiant `aiService.py`
+
+Pour activer l'API OpenAI réelle, il suffirait de:
+
+1. Ajouter la clé API dans `.env`
+2. Modifier `aiService.py` pour appeler OpenAI au lieu du mock
+3. Installer `openai` dans `requirements.txt`
