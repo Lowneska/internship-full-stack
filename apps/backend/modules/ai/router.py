@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 
 from modules.ai.schemas import ProgramRequest, ProgramResponse
 from modules.ai.service import generate_program_from_text
-from routes.dependencies import get_current_user
+from dependencies.dependencies import get_current_user
 
 
 router = APIRouter()
@@ -20,16 +20,9 @@ def generate_program(
     """
     Generate a workout program based on user input text
     """
-    try:
-        program = generate_program_from_text(body.text)
-        return program
-    except ValueError as e:
+    result = generate_program_from_text(body.text)
+    if not result.success:
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to generate workout program: {str(e)}",
+            status_code=422, detail=result.error_message or "Invalid request"
         )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Unexpected error: {str(e)}",
-        )
+    return result

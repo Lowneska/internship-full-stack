@@ -10,4 +10,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
+  max-width: 100%;
+}
+
+.programDisplay__grid > * {
+  max-width: 500px;
+}
+
+@media (min-width: 768px) {
+  .programDisplay__grid {
+    justify-items: center;
+  }
 }

@@ -13,7 +13,7 @@ from modules.auth.service import (
     verify_password,
     create_access_token,
 )
-from routes.dependencies import get_current_user
+from dependencies.dependencies import get_current_user
 
 router = APIRouter()
 

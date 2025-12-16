@@ -17,8 +17,8 @@ export function ProgramDisplay({ program }: ProgramDisplayProps) {
       <h2 className={styles.programDisplay__title}>Program</h2>
 
       <div className={styles.programDisplay__grid}>
-        {program.days.map((day: ProgramDay) => (
-          <ProgramDayCard key={day.day} day={day} />
+        {program.days.map((day: ProgramDay, index: number) => (
+          <ProgramDayCard key={`day-${index}`} day={day} />
         ))}
       </div>
     </section>

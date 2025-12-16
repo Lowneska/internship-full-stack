@@ -6,9 +6,6 @@ Application full-stack permettant de générer des programmes d'entraînement sp
 
 Cette application combine authentification sécurisée et génération de programmes sportifs via IA. L'utilisateur décrit ses objectifs en langage naturel (ex: "Je veux perdre du poids, 4 séances/semaine, 45 min, sans haltères") et reçoit un programme structuré avec exercices, séries, répétitions, et conseils.
 
-**⚠️ Note importante sur l'API OpenAI:**
-Ce projet utilise un **mock de l'API OpenAI** au lieu de la vraie API payante. Le service `aiService.py` génère des programmes d'entraînement structurés de manière déterministe sans appels API réels. Cela permet de tester l'application complète sans frais. L'option AI a été implémenté mais je n'ai pas pu réellement la tester.
-
 ## Stack
 
 | Component | Technology      |
@@ -21,12 +18,12 @@ Ce projet utilise un **mock de l'API OpenAI** au lieu de la vraie API payante. L
 
 ```
 ├── apps/
-│   ├── backend/           # API FastAPI
+│   ├── backend/          # API FastAPI
 │   │   ├── main.py       # Point d'entrée
 │   │   ├── middleware.py # CORS & auth
-│   │   ├── db/           # Models & schemas
-│   │   ├── modules/      # Features (auth, ai)
-│   │   └── services/     # Business logic
+│   │   ├── db/           # Database
+│   │   ├── dependencies/ # Dependencies
+│   │   └── modules/      # Features (auth, ai)
 │   └── web/              # Frontend Next.js
 │       └── src/
 │           ├── app/      # Pages & layouts
@@ -72,7 +69,7 @@ Ce projet utilise un **mock de l'API OpenAI** au lieu de la vraie API payante. L
 
 Chaque programme inclut:
 
-- 4-6 jours d'entraînement
+- 4-7 jours d'entraînement
 - Focus par jour (cardio, force, mobilité...)
 - Liste d'exercices avec sets × reps
 - Temps de repos entre exercices

@@ -22,6 +22,8 @@ class ProgramDay(BaseModel):
 
 class ProgramResponse(BaseModel):
     days: List[ProgramDay]
+    success: bool
+    error_message: str | None
 
 
 class ProgramRequest(BaseModel):

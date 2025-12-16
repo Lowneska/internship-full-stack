@@ -18,4 +18,6 @@ export type ProgramDay = {
 
 export type ProgramResponse = {
   days: ProgramDay[];
+  success: boolean;
+  error_message: string | null;
 };
